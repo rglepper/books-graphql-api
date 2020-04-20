@@ -3,6 +3,7 @@ import { AuthorService } from './author.service';
 import { AuthorModel } from './author.model';
 import { CreateAuthorInput } from './create-author.input';
 import { Author } from './author.interface';
+import { UpdateAuthorInput } from './update-author.input';
 
 @Resolver('Author')
 export class AuthorResolver {
@@ -16,5 +17,13 @@ export class AuthorResolver {
 	@Mutation(() => AuthorModel)
 	async createAuthor(@Args('authorData') authorData: CreateAuthorInput): Promise<Author> {
 		return this.authorService.addAuthor(authorData)
+	}
+
+	@Mutation(() => AuthorModel)
+	async updateAuthor(
+		@Args('id') id:string,
+		@Args('changes') changes:UpdateAuthorInput,
+	): Promise<Author> {
+		return await this.authorService.updateAuthor(id,changes);
 	}
 }
