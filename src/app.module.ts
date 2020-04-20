@@ -9,9 +9,13 @@ import { MongooseModule } from '@nestjs/mongoose';
   imports: [GraphQLModule.forRoot({
     autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
   }),
-  MongooseModule.forRoot('mongodb://graphql-playlist:test123@ds259410.mlab.com:59410/books', { useNewUrlParser: true, useUnifiedTopology: true }),
-  AuthorModule
-],
+  MongooseModule.forRoot('mongodb://graphql-playlist:test123@ds259410.mlab.com:59410/books', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+  }),
+    AuthorModule
+  ],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
