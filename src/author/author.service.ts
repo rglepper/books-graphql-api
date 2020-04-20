@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Author } from './author.interface';
 import { Model } from 'mongoose';
-import { AuthorInput } from './author.input';
+import { CreateAuthorInput } from './create-author.input';
 
 @Injectable()
 export class AuthorService {
@@ -14,7 +14,7 @@ export class AuthorService {
 		return await this.authorModel.find().exec();
 	}
 
-	async addAuthor(newAuthor: AuthorInput): Promise<Author> {
+	async addAuthor(newAuthor: CreateAuthorInput): Promise<Author> {
 		const author = new this.authorModel(newAuthor);
 
 		return await author.save();
