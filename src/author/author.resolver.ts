@@ -4,10 +4,13 @@ import { AuthorModel } from './author.model';
 import { CreateAuthorInput } from './create-author.input';
 import { Author } from './author.interface';
 import { UpdateAuthorInput } from './update-author.input';
+import { BookService } from '../book/book.service';
 
 @Resolver('Author')
 export class AuthorResolver {
-	constructor(private readonly authorService: AuthorService) {}
+	constructor(
+		private readonly authorService: AuthorService,
+		private readonly bookService: BookService) {}
 
 	@Query(() => [AuthorModel])
 	authors() {
