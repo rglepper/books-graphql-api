@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
 import { AuthorService } from './author.service';
 import { AuthorModel } from './author.model';
 import { CreateAuthorInput } from './create-author.input';
@@ -6,7 +6,8 @@ import { Author } from './author.interface';
 import { UpdateAuthorInput } from './update-author.input';
 import { BookService } from '../book/book.service';
 
-@Resolver('Author')
+
+@Resolver(() => AuthorModel)
 export class AuthorResolver {
 	constructor(
 		private readonly authorService: AuthorService,
@@ -28,5 +29,11 @@ export class AuthorResolver {
 		@Args('changes') changes:UpdateAuthorInput,
 	): Promise<Author> {
 		return await this.authorService.updateAuthor(id,changes);
+	}
+
+	@ResolveField()
+	async books(@Parent() author) {
+		const { id } = author;
+		return await this.bookService.findAllByAuthor(id);
 	}
 }
