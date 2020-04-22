@@ -7,5 +7,7 @@ import { Book } from './book.interface';
 export class BookService {
 	constructor(@InjectModel('Book') private readonly bookModel: Model<Book>) {}
 
-
+	async findAllBooks(): Promise<Book[]> {
+		return await this.bookModel.find().exec();
+	}
 }
