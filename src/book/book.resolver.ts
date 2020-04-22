@@ -9,4 +9,9 @@ export class BookResolver {
 		private readonly bookService: BookService
 	) { }
 
+	@Query(() => [BookModel])
+	async getBooks(): Promise<Book[]> {
+		return await this.bookService.findAllBooks();
+	}
+
 }
