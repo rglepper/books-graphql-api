@@ -4,6 +4,7 @@ import { AuthorModule } from './author/author.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { MongooseModule } from '@nestjs/mongoose';
+import { BookModule } from './book/book.module';
 
 @Module({
   imports: [GraphQLModule.forRoot({
@@ -14,7 +15,8 @@ import { MongooseModule } from '@nestjs/mongoose';
     useUnifiedTopology: true,
     useFindAndModify: false
   }),
-    AuthorModule
+    AuthorModule,
+    BookModule
   ],
   providers: [AppService],
 })
