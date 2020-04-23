@@ -10,7 +10,7 @@ export class BookService {
 	async findAllBooks(): Promise<Book[]> {
 		return await this.bookModel.find().exec();
 	}
-	async findAllByAuthor(authorId: String) {
+	async findAllByAuthor(authorId: String): Promise<Book[]> {
 		return await this.bookModel.find({authorid: authorId}).exec();
 	}
 }
