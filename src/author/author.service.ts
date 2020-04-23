@@ -8,7 +8,7 @@ import { UpdateAuthorInput } from './update-author.input';
 @Injectable()
 export class AuthorService {
 
-	constructor(@InjectModel('Author') private readonly authorModel: Model<Author>)  {}
+	constructor(@InjectModel('Author') private readonly authorModel: Model<Author>) { }
 
 
 	async getAuthors(): Promise<Author[]> {
@@ -26,7 +26,7 @@ export class AuthorService {
 	}
 
 	async updateAuthor(id: string, changes: UpdateAuthorInput) {
-		return await this.authorModel.findByIdAndUpdate(id, changes, {new: true});
+		return await this.authorModel.findByIdAndUpdate(id, changes, { new: true });
 	}
 
 	  async deleteAuthor(id: string): Promise<Author> {
