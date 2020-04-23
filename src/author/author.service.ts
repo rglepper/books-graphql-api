@@ -15,6 +15,10 @@ export class AuthorService {
 		return await this.authorModel.find().exec();
 	}
 
+	async getAuthor(id: String): Promise<Author> {
+		return await this.authorModel.findById(id);
+	}
+
 	async addAuthor(newAuthor: CreateAuthorInput): Promise<Author> {
 		const author = new this.authorModel(newAuthor);
 
