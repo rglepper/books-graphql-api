@@ -24,4 +24,9 @@ export class AuthorService {
 	async updateAuthor(id: string, changes: UpdateAuthorInput) {
 		return await this.authorModel.findByIdAndUpdate(id, changes, {new: true});
 	}
+
+	  async deleteAuthor(id: string): Promise<Author> {
+		return await this.authorModel.findByIdAndRemove(id);
+	  }
+
 }
