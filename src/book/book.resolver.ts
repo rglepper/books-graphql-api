@@ -3,7 +3,7 @@ import { BookService } from './book.service';
 import { Book } from './book.interface';
 import { BookModel } from './book.model';
 
-@Resolver('Book')
+@Resolver(of => BookModel)
 export class BookResolver {
 	constructor(
 		private readonly bookService: BookService
